@@ -1,0 +1,16 @@
+version: "3"
+
+services:
+  php-apache:
+    build: docker/php
+    links:
+      - mariadb
+    ports:
+      - "3080:80"
+    volumes:
+      - ./projects:/var/www/html
+
+  mariadb:
+    image: lsioarmhf/mariadb:latest
+    environment:
+      - MYSQL_ROOT_PASSWORD=my-secret-pw
